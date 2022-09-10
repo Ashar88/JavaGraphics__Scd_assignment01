@@ -6,7 +6,7 @@ public class QuadaraticFormulaGui {
 
     public static void main(String[] args) {
         
-        JFrame frame = new JFrame("Quadratic formula");
+        JFrame frame = new JFrame("3-BY-3 MATRIX SOLVER");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new quadaraticFormulaGuiPanel());
         frame.pack();

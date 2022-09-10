@@ -41,15 +41,9 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         
         
         add__var_labels_and_text();
-//        add(aLabel);
-//        add(aText);
-//        add(bLabel);
-//        add(bText);
-//        add(cLabel);     
-//        add(cText);
-//        
         add(calculate);
 
+        
 //        setBackground(Color.BLACK);
         setPreferredSize(new Dimension(300, 450));
     }
@@ -58,7 +52,7 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     
     
     private void set_var_Texts() {
-    	var_Texts = new JTextField[9];
+    	var_Texts = new JTextField[12];
     	for(int i=0; i<var_Texts.length; i++) {
     		var_Texts[i]=new JTextField(4);
     	}}
@@ -73,17 +67,17 @@ public class quadaraticFormulaGuiPanel extends JPanel{
 
     
 	private void set_var_labels() {
-    	var_labels = new JLabel[9];
+    	var_labels = new JLabel[12];
     	
-		String names[] = {"x  + ", "y + ","z= "};
-		for(int i=0; i<3; i++) {
+		String names[] = {"x+ ", "y+ ","z= ", " "};
+		for(int i=0; i<4; i++) {
 //			String curr = Character.toString(names.charAt(i)) + " ";
 			String curr = names[i];
 			
 //			System.out.println(curr);
 			var_labels[i]=new JLabel(curr);
-			var_labels[i+3]=new JLabel(curr);
-			var_labels[i+6]=new JLabel(curr);
+			var_labels[i+4]=new JLabel(curr);
+			var_labels[i+8]=new JLabel(curr);
 		}
 		
 	}
