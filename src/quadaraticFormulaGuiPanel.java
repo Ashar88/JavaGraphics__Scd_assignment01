@@ -12,12 +12,15 @@ import javax.swing.JTextField;
 public class quadaraticFormulaGuiPanel extends JPanel{
     
     private JLabel aLabel, bLabel, cLabel;
+    private JLabel[] var_labels;
     private JTextField aText, bText, cText;
     private JButton calculate;
     private int aValue, bValue, cValue, oppositeB, bSquared, fourAC, twoA;
     
     public quadaraticFormulaGuiPanel()
     {    
+    	set_var_labels();
+    	
         aLabel = new JLabel("A value:");
 //        aLabel.setForeground(Color.WHITE);
         bLabel = new JLabel("B value:");
@@ -32,6 +35,8 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         calculate = new JButton("Show the steps");
         calculate.addActionListener(new buttonListener());
         
+//        add(var_labels[0]);
+        add__var_labels();
         add(aLabel);
         add(aText);
         add(bLabel);
@@ -46,7 +51,31 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     }
     
         
-    public class buttonListener implements ActionListener
+    private void add__var_labels() {
+    	for(int i=0; i<var_labels.length; i++) {
+    		add(var_labels[i]);
+    	}
+		
+	}
+
+
+	private void set_var_labels() {
+    	var_labels = new JLabel[9];
+    	
+		String names = "xyz";
+		for(int i=0; i<3; i++) {
+			String curr = Character.toString(names.charAt(i)) + " ";
+			
+			System.out.println(curr);
+			var_labels[i]=new JLabel(curr);
+			var_labels[i+3]=new JLabel(curr);
+			var_labels[i+6]=new JLabel(curr);
+		}
+		
+	}
+
+
+	public class buttonListener implements ActionListener
     {
         @Override
         public void actionPerformed (ActionEvent e)
