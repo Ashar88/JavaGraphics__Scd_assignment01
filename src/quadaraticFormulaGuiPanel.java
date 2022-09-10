@@ -12,7 +12,10 @@ import javax.swing.JTextField;
 public class quadaraticFormulaGuiPanel extends JPanel{
     
     private JLabel aLabel, bLabel, cLabel;
+    
     private JLabel[] var_labels;
+    private JTextField[] var_Texts;
+    
     private JTextField aText, bText, cText;
     private JButton calculate;
     private int aValue, bValue, cValue, oppositeB, bSquared, fourAC, twoA;
@@ -20,6 +23,7 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     public quadaraticFormulaGuiPanel()
     {    
     	set_var_labels();
+    	set_var_Texts();
     	
         aLabel = new JLabel("A value:");
 //        aLabel.setForeground(Color.WHITE);
@@ -35,38 +39,48 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         calculate = new JButton("Show the steps");
         calculate.addActionListener(new buttonListener());
         
-//        add(var_labels[0]);
-        add__var_labels();
-        add(aLabel);
-        add(aText);
-        add(bLabel);
-        add(bText);
-        add(cLabel);     
-        add(cText);
         
+        add__var_labels_and_text();
+//        add(aLabel);
+//        add(aText);
+//        add(bLabel);
+//        add(bText);
+//        add(cLabel);     
+//        add(cText);
+//        
         add(calculate);
 
 //        setBackground(Color.BLACK);
-        setPreferredSize(new Dimension(350, 450));
+        setPreferredSize(new Dimension(300, 450));
     }
     
-        
-    private void add__var_labels() {
+     
+    
+    
+    private void set_var_Texts() {
+    	var_Texts = new JTextField[9];
+    	for(int i=0; i<var_Texts.length; i++) {
+    		var_Texts[i]=new JTextField(4);
+    	}}
+    
+    private void add__var_labels_and_text() {
+
     	for(int i=0; i<var_labels.length; i++) {
+    		add(var_Texts[i]);
     		add(var_labels[i]);
-    	}
-		
-	}
+    	}}
 
 
+    
 	private void set_var_labels() {
     	var_labels = new JLabel[9];
     	
-		String names = "xyz";
+		String names[] = {"x  + ", "y + ","z= "};
 		for(int i=0; i<3; i++) {
-			String curr = Character.toString(names.charAt(i)) + " ";
+//			String curr = Character.toString(names.charAt(i)) + " ";
+			String curr = names[i];
 			
-			System.out.println(curr);
+//			System.out.println(curr);
 			var_labels[i]=new JLabel(curr);
 			var_labels[i+3]=new JLabel(curr);
 			var_labels[i+6]=new JLabel(curr);
