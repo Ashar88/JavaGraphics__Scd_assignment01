@@ -18,16 +18,16 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     
     public quadaraticFormulaGuiPanel()
     {    
-        aLabel = new JLabel("X1:");
-        aLabel.setForeground(Color.WHITE);
+        aLabel = new JLabel("A value:");
+//        aLabel.setForeground(Color.WHITE);
         bLabel = new JLabel("B value:");
-        bLabel.setForeground(Color.WHITE);
+//        bLabel.setForeground(Color.WHITE);
         cLabel = new JLabel("C value:");
-        cLabel.setForeground(Color.WHITE);
+//        cLabel.setForeground(Color.WHITE);
         
-        aText = new JTextField(2);
-        bText = new JTextField(2);
-        cText = new JTextField(2);
+        aText = new JTextField(4);
+        bText = new JTextField(4);
+        cText = new JTextField(4);
         
         calculate = new JButton("Show the steps");
         calculate.addActionListener(new buttonListener());
@@ -41,8 +41,8 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         
         add(calculate);
 
-        setBackground(Color.BLACK);
-        setPreferredSize(new Dimension(250, 450));
+//        setBackground(Color.BLACK);
+        setPreferredSize(new Dimension(350, 450));
     }
     
         
