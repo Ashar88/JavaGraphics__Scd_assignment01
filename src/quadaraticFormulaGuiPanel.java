@@ -11,9 +11,8 @@ import javax.swing.JTextField;
 
 public class quadaraticFormulaGuiPanel extends JPanel{
     
-    private JLabel aLabel, bLabel, cLabel;
-    
     private JLabel[] var_labels;
+    private JLabel title;
     private JTextField[] var_Texts;
     
     private JTextField aText, bText, cText;
@@ -21,35 +20,30 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     private int aValue, bValue, cValue, oppositeB, bSquared, fourAC, twoA;
     
     public quadaraticFormulaGuiPanel()
-    {    
+    {   
     	set_var_labels();
     	set_var_Texts();
     	
-        aLabel = new JLabel("A value:");
-//        aLabel.setForeground(Color.WHITE);
-        bLabel = new JLabel("B value:");
-//        bLabel.setForeground(Color.WHITE);
-        cLabel = new JLabel("C value:");
-//        cLabel.setForeground(Color.WHITE);
-        
-        aText = new JTextField(4);
-        bText = new JTextField(4);
-        cText = new JTextField(4);
-        
-        calculate = new JButton("Show the steps");
+        calculate = new JButton("Solve Equations: ");
         calculate.addActionListener(new buttonListener());
         
-        
+        setTitle();
         add__var_labels_and_text();
         add(calculate);
 
         
 //        setBackground(Color.BLACK);
-        setPreferredSize(new Dimension(300, 450));
+        setPreferredSize(new Dimension(320, 450));
     }
     
      
-    
+    public void setTitle() {
+	    // adding title label
+    	title = new JLabel("LINEAR EQUATIONS "); 
+	    title.setBounds(150,20, 600, 30);
+	    title.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
+	    title.setForeground(Color.red);
+	}
     
     private void set_var_Texts() {
     	var_Texts = new JTextField[12];
@@ -69,7 +63,7 @@ public class quadaraticFormulaGuiPanel extends JPanel{
 	private void set_var_labels() {
     	var_labels = new JLabel[12];
     	
-		String names[] = {"x+ ", "y+ ","z= ", " "};
+		String names[] = {"x+   ", "y+   ","z= ", " "};
 		for(int i=0; i<4; i++) {
 //			String curr = Character.toString(names.charAt(i)) + " ";
 			String curr = names[i];
