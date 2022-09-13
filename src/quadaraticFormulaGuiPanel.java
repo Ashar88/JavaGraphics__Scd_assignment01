@@ -8,8 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import Jama.*;
+import javax.swing.border.EmptyBorder;
 
+import Jama.*;
+import Jama.Matrix;
 
 
 public class quadaraticFormulaGuiPanel extends JPanel{
@@ -20,7 +22,7 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     
     private JButton calculate;
     private double[][] mat;
-    private Matrix matrix;
+    private double x=-1,y=-1,z=-1;
     
     public quadaraticFormulaGuiPanel()
     {   
@@ -33,19 +35,41 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         setTitle();
         add__var_labels_and_text();
         add(calculate);
-
+        set_ans();    
+        
         
 //        setBackground(Color.BLACK);
         setPreferredSize(new Dimension(320, 450));
     }
     
      
-    public void setTitle() {
+    private void set_ans() {
+    	JLabel t1 =  new JLabel("X: "+x);
+    	t1.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
+        t1.setBorder(new EmptyBorder(10, 70, 10, 50));
+    	
+    	JLabel t2 =  new JLabel("Y: "+y);
+    	t2.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
+    	t2.setBorder(new EmptyBorder(10, 70, 10, 50));
+
+    	JLabel t3 =  new JLabel("Z: "+z); 
+    	t3.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
+    	t3.setBorder(new EmptyBorder(10, 70, 10, 50));
+    	
+    	add(t1);
+    	add(t2);
+    	add(t3);
+	}
+
+
+	public void setTitle() {
 	    // adding title label
-    	title = new JLabel("LINEAR EQUATIONS: "); 
-	    title.setBounds(150,20, 600, 30);
+    	title = new JLabel("LINEAR EQUATIONS:      ");
+    	title.setBorder(new EmptyBorder(10, 100, 10, 50));
+//	    title.setBounds(20,20, 20, 30);
 	    title.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
 	    title.setForeground(Color.red);
+	    add(title);
 	}
     
     private void set_var_Texts() {
@@ -83,7 +107,7 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         @Override
         public void actionPerformed (ActionEvent e)
         {  
-        	mat = new double[3][4];
+        	mat = new double[3][3];
         	
         	mat[0][0] = Double.parseDouble( var_Texts[0].getText() );
         	mat[1][0] = Double.parseDouble( var_Texts[4].getText() );
@@ -97,69 +121,26 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         	mat[0][2] = Double.parseDouble( var_Texts[2].getText() );
         	mat[1][2] = Double.parseDouble( var_Texts[6].getText() );
         	mat[2][2] = Double.parseDouble( var_Texts[10].getText() );
+        	
+        	double[] mat2 = new double[3];
             
-        	mat[0][3] = Double.parseDouble( var_Texts[3].getText() );
-        	mat[1][3] = Double.parseDouble( var_Texts[7].getText() );
-        	mat[2][3] = Double.parseDouble( var_Texts[11].getText() );
+        	mat2[0] = Double.parseDouble( var_Texts[3].getText() );
+        	mat2[1] = Double.parseDouble( var_Texts[7].getText() );
+        	mat2[2] = Double.parseDouble( var_Texts[11].getText() );
             
             
         	for(int i=0; i<3; i++) {
-        		for(int j=0; j<4; j++)
+        		for(int j=0; j<3; j++)
         			System.out.println(mat[i][j]);        		
         	}
             
-        	matrix = new Matrix(mat);
-//            LUDecomposition solve = new LUDecomposition(matrix);
+      	    Matrix matrix1 = new Matrix(mat);
+      	    Matrix matrix2 = new Matrix(mat2,3);
+      	    
+      	    Matrix ans = matrix1.solve(matrix2);
+      	    
         }
     }    
     
-    @Override
-    public void paintComponent(Graphics g)
-    {
-//        super.paintComponent(g);
-//        
-//        g.setFont(new Font("Serif", Font.PLAIN, 18));
-//        
-//        g.setColor(Color.WHITE);
-//        g.drawString("-(b) + ", 10, 90);
-//        g.drawString("-", 45, 100);
-//        g.drawString("_____________", 60, 68);
-//        g.drawString("|     2", 57, 84);
-//        g.drawString("| (b)   - 4 (a) (c)", 57, 100);
-//        g.drawString("__________________", 10, 110);
-//        g.drawString("2 (a)", 70, 140);
-//        g.drawString("( 1 )", 220, 110);
-//        
-//        g.drawString("-(" + bValue + ") + ", 10, 180);
-//        g.drawString("-", 45, 190);
-//        g.drawString("_____________", 60, 158);
-//        g.drawString("|     2", 57, 174);
-//        g.drawString("| (" + bValue + ")   - 4 (" + aValue + ")" + " (" + cValue + ")", 57, 190);
-//        g.drawString("__________________", 10, 200);
-//        g.drawString("2 (" + aValue + ")", 70, 230);
-//        g.drawString("( 2 )", 220, 200);
-//        
-//        g.drawString("" + oppositeB + " + ", 10, 270);
-//        g.drawString("-", 34, 280);
-//        g.drawString("_____________", 60, 248);
-//        g.drawString("|", 57, 264);
-//        g.drawString("| " + bSquared + " - " + fourAC, 57, 280);
-//        g.drawString("__________________", 10, 290);
-//        g.drawString("" + twoA, 70, 320);
-//        g.drawString("( 3 )", 220, 290);
-//        
-//        g.drawString("" + oppositeB + " + ", 10, 360);
-//        g.drawString("-", 34, 370);
-//        g.drawString("_____________", 60, 338);
-//        g.drawString("|", 57, 354);
-//        g.drawString("| " + (bSquared - fourAC) , 57, 370);
-//        g.drawString("__________________", 10, 380);
-//        g.drawString("" + twoA, 70, 410);
-//        g.drawString("( 4 )", 220, 380);
-//
-//        g.drawString("Solve rest of equation . . . ", 10, 450);
-//               
-//        repaint();
-    }
-
+   
 }
