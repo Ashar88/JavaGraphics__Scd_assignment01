@@ -9,22 +9,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.util.Random;
 
 import Jama.*;
 import Jama.Matrix;
 
 
-public class quadaraticFormulaGuiPanel extends JPanel{
+public class LinearEquationSystems extends JPanel{
     
     private JLabel[] var_labels;
     private JLabel title;
     private JTextField[] var_Texts;
+    private Random rand = new Random();
     
     private JButton calculate;
     private double[][] mat;
-    private double x=-1,y=-1,z=-1;
+    private double x=-10,y=-10,z=-1;
+    private JLabel t1,t2,t3;
     
-    public quadaraticFormulaGuiPanel()
+    public LinearEquationSystems()
     {   
     	set_var_labels();
     	set_var_Texts();
@@ -35,7 +38,7 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         setTitle();
         add__var_labels_and_text();
         add(calculate);
-        set_ans();    
+        set_ans___();    
         
         
 //        setBackground(Color.BLACK);
@@ -43,16 +46,16 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     }
     
      
-    private void set_ans() {
-    	JLabel t1 =  new JLabel("X: "+x);
+    private void set_ans___() {
+    	t1 =  new JLabel("X: "+x);
     	t1.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
         t1.setBorder(new EmptyBorder(10, 70, 10, 50));
     	
-    	JLabel t2 =  new JLabel("Y: "+y);
+    	t2 =  new JLabel("Y: "+y);
     	t2.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
     	t2.setBorder(new EmptyBorder(10, 70, 10, 50));
 
-    	JLabel t3 =  new JLabel("Z: "+z); 
+    	t3 =  new JLabel("Z: "+z); 
     	t3.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
     	t3.setBorder(new EmptyBorder(10, 70, 10, 50));
     	
@@ -61,6 +64,11 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     	add(t3);
 	}
 
+    private void set_ans____() {
+    	t1.setText("X: "+x);
+    	t2.setText("Y: "+y);
+    	t3.setText("Z: "+z);
+    }
 
 	public void setTitle() {
 	    // adding title label
@@ -123,21 +131,27 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         	mat[2][2] = Double.parseDouble( var_Texts[10].getText() );
         	
         	double[] mat2 = new double[3];
+        	double xyz=x = rand.nextDouble();
+        	double mnfo=y = rand.nextDouble();
+        	double fjjdo=z = rand.nextDouble();
+        	x = Math.ceil(x*10);  y = Math.ceil(y*10);  z = Math.ceil(z*10); set_ans____();
+        	
             
         	mat2[0] = Double.parseDouble( var_Texts[3].getText() );
         	mat2[1] = Double.parseDouble( var_Texts[7].getText() );
         	mat2[2] = Double.parseDouble( var_Texts[11].getText() );
             
             
-        	for(int i=0; i<3; i++) {
-        		for(int j=0; j<3; j++)
-        			System.out.println(mat[i][j]);        		
-        	}
+//        	for(int i=0; i<3; i++) {
+//        		for(int j=0; j<3; j++)
+////        			System.out.println(mat[i][j]);        		
+//        	}
             
       	    Matrix matrix1 = new Matrix(mat);
       	    Matrix matrix2 = new Matrix(mat2,3);
       	    
       	    Matrix ans = matrix1.solve(matrix2);
+      	    
       	    
         }
     }    
