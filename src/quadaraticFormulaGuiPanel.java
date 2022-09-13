@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import Jama.*;
+
+
 
 public class quadaraticFormulaGuiPanel extends JPanel{
     
@@ -16,7 +19,8 @@ public class quadaraticFormulaGuiPanel extends JPanel{
     private JTextField[] var_Texts;
     
     private JButton calculate;
-    private int [][] matrix;
+    private double[][] mat;
+    private Matrix matrix;
     
     public quadaraticFormulaGuiPanel()
     {   
@@ -79,32 +83,33 @@ public class quadaraticFormulaGuiPanel extends JPanel{
         @Override
         public void actionPerformed (ActionEvent e)
         {  
-        	matrix = new int[3][4];
+        	mat = new double[3][4];
         	
-        	matrix[0][0] = Integer.parseInt( var_Texts[0].getText() );
-        	matrix[1][0] = Integer.parseInt( var_Texts[4].getText() );
-        	matrix[2][0] = Integer.parseInt( var_Texts[8].getText() );
+        	mat[0][0] = Double.parseDouble( var_Texts[0].getText() );
+        	mat[1][0] = Double.parseDouble( var_Texts[4].getText() );
+        	mat[2][0] = Double.parseDouble( var_Texts[8].getText() );
             
-        	matrix[0][1] = Integer.parseInt( var_Texts[1].getText() );
-        	matrix[1][1] = Integer.parseInt( var_Texts[5].getText() );
-        	matrix[2][1] = Integer.parseInt( var_Texts[9].getText() );
+        	mat[0][1] = Double.parseDouble( var_Texts[1].getText() );
+        	mat[1][1] = Double.parseDouble( var_Texts[5].getText() );
+        	mat[2][1] = Double.parseDouble( var_Texts[9].getText() );
             
             
-        	matrix[0][2] = Integer.parseInt( var_Texts[2].getText() );
-        	matrix[1][2] = Integer.parseInt( var_Texts[6].getText() );
-        	matrix[2][2] = Integer.parseInt( var_Texts[10].getText() );
+        	mat[0][2] = Double.parseDouble( var_Texts[2].getText() );
+        	mat[1][2] = Double.parseDouble( var_Texts[6].getText() );
+        	mat[2][2] = Double.parseDouble( var_Texts[10].getText() );
             
-        	matrix[0][3] = Integer.parseInt( var_Texts[3].getText() );
-        	matrix[1][3] = Integer.parseInt( var_Texts[7].getText() );
-        	matrix[2][3] = Integer.parseInt( var_Texts[11].getText() );
+        	mat[0][3] = Double.parseDouble( var_Texts[3].getText() );
+        	mat[1][3] = Double.parseDouble( var_Texts[7].getText() );
+        	mat[2][3] = Double.parseDouble( var_Texts[11].getText() );
             
             
         	for(int i=0; i<3; i++) {
         		for(int j=0; j<4; j++)
-        			System.out.println(matrix[i][j]);        		
+        			System.out.println(mat[i][j]);        		
         	}
             
-            
+        	matrix = new Matrix(mat);
+//            LUDecomposition solve = new LUDecomposition(matrix);
         }
     }    
     
